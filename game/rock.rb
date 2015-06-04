@@ -1,10 +1,13 @@
 class Rock
+
+	attr_reader :y
+
 	def initialize
 		@image = Gosu::Image.new("images/rock.png")
 		@width = @image.width
 		@height = @image.height
 		@x = rand(Game::WIDTH-@width)
-		@y = 0
+		@y = -@height
 		@z = 1
 		@speed = rand(1..4)
 	end
@@ -15,6 +18,10 @@ class Rock
 
 	def draw
 		@image.draw(@x,@y,@z)
+	end
+
+	def is_off_screen?
+		@y > Game::HEIGHT
 	end
 
 end
